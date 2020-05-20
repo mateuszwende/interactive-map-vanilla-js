@@ -1,0 +1,12 @@
+.view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}

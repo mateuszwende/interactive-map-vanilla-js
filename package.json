@@ -4,7 +4,7 @@
   "description": "Interactive map written in vanilla js",
   "license": "ISC",
   "author": "Mateusz Wende",
-  "homepage": "https://mateuszwende.github.io/interactive-map-js",
+  "homepage": "https://mateuszwende.github.io/interactive-map-vanilla-js",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --mode production",

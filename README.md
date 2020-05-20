@@ -14,7 +14,7 @@ Architecture:
 
 - State in redux-style - data-store required components subscribe to store and get rerendered every time when an action is dispatched.
 
-[DEMO](https://mateuszwende.github.io/interactive-map-vanilla-js)
+[https://mateuszwende.github.io/interactive-map-vanilla-js/](https://mateuszwende.github.io/interactive-map-vanilla-js/)
 
 ## Setup
 

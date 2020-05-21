@@ -64,7 +64,7 @@ module.exports = (env, argv) => {
     devServer: {
       contentBase: "./dist",
     },
-    devtool: "inline-source-map",
+    devtool: isDevMode ? "inline-source-map" : "none",
     optimization: {
       minimize: isDevMode ? false : true,
       minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],

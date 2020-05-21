@@ -6,24 +6,25 @@ import {
   hasClass,
 } from "../helpers/dom";
 
-const tabsContainer = $("#tabs-nav");
-const tabContentContainer = $("#tabs-content");
-const tabClass = "nav-tab";
-const tabPaneClass = "tab-pane";
+export const createTabs = (
+  items = [],
+  tabsSelector,
+  tabsContentSelector,
+  tabClass,
+  tabPaneClass
+) => {
+  items.forEach((item) => {
+    const tab = createTab(item, tabClass, tabPaneClass);
+    const tabPane = createTabPane(item, tabPaneClass);
 
-export const createTabs = (items = []) => {
-  items.forEach((item, i) => {
-    const tab = createTab(item, i);
-    const tabPane = createTabPane(item, i);
-
-    tabsContainer.appendChild(tab);
-    tabContentContainer.appendChild(tabPane);
+    $(tabsSelector).appendChild(tab);
+    $(tabsContentSelector).appendChild(tabPane);
   });
 
-  if (items.length) setInitialActive(0);
+  if (items.length) setInitialActive(0, tabClass, tabPaneClass);
 };
 
-const createTab = (item, i) => {
+const createTab = (item, tabClass, tabPaneClass) => {
   const tab = createElement("li");
   const a = createElement("a");
   a.setAttribute("href", `#${item.tabPaneId}`);
@@ -32,12 +33,12 @@ const createTab = (item, i) => {
   addClass(tab, tabClass);
   tab.appendChild(a);
 
-  tab.addEventListener("click", (e) => onTabClick(e, item.renderPane));
+  tab.addEventListener("click", (e) => onTabClick(e, tabClass, tabPaneClass));
 
   return tab;
 };
 
-const createTabPane = (item, i) => {
+const createTabPane = (item, tabPaneClass) => {
   const tabPane = createElement("div");
   addClass(tabPane, tabPaneClass);
   tabPane.id = item.tabPaneId;
@@ -46,12 +47,12 @@ const createTabPane = (item, i) => {
   return tabPane;
 };
 
-const setInitialActive = (index) => {
+const setInitialActive = (index, tabClass, tabPaneClass) => {
   addClass($.all(`.${tabClass}`)[index], "active");
   addClass($.all(`.${tabPaneClass}`)[index], "active");
 };
 
-const onTabClick = (e) => {
+const onTabClick = (e, tabClass, tabPaneClass) => {
   const isAlreadyActive = hasClass(e.currentTarget, "active");
   if (isAlreadyActive) return;
 

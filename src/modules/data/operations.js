@@ -9,4 +9,9 @@ export const getCountryCapitals = () =>
     },
   }));
 
-export const getCoordinatesStr = (coord) => `${coord.lng}°N ${coord.lat}°E`;
+export const getCoordinatesStr = (coord) => {
+  const lat = coord.lat >= 0 ? `${coord.lat}°N` : `${coord.lat * -1}°S`;
+  const lng = coord.lng >= 0 ? `${coord.lng}°E` : `${coord.lng * -1}°W`;
+
+  return `${lat} ${lng}`;
+};

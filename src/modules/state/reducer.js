@@ -1,32 +1,26 @@
 import { ACTION_TYPES } from "./types";
-import { createPoint } from "../helpers/geojson";
-import { MODE_TYPES } from "./types";
+import { MODE } from "../mode/constants";
 
 const initialState = {
-  distancePoints: [],
+  measurePoints: [],
   markers: [],
-  distance: "",
-  mode: MODE_TYPES["MARKER"],
+  radarMarkers: [],
+  distance: "0 km",
+  mode: MODE["MARKER"],
 };
-
-const isValidMode = (modes, mode) =>
-  Object.values(modes).find((m) => m === mode);
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ACTION_TYPES.ADD_DISTANCE_POINT:
+    case ACTION_TYPES.ADD_MEASURE_POINT:
       return {
         ...state,
-        distancePoints: [
-          ...state.distancePoints,
-          createPoint(action.payload.lng, action.payload.lat),
-        ],
+        measurePoints: [...state.measurePoints, action.payload],
       };
-    case ACTION_TYPES.REMOVE_DISTANCE_POINT:
+    case ACTION_TYPES.REMOVE_MEASURE_POINT:
       return {
         ...state,
-        distancePoints: state.distancePoints.filter(
-          (point) => point.properties.id !== action.payload
+        measurePoints: state.measurePoints.filter(
+          (point) => point.id !== action.payload
         ),
       };
     case ACTION_TYPES.SET_DISTANCE_STR:
@@ -43,20 +37,42 @@ export const appReducer = (state = initialState, action) => {
     case ACTION_TYPES.REMOVE_MARKER:
       return {
         ...state,
-        markers: state.markers.filter((marker) => {
-          const markerlngLat = marker.getLngLat();
-          return (
-            markerlngLat.lat !== action.payload.lat &&
-            markerlngLat.lng !== action.payload.lng
-          );
-        }),
+        markers: state.markers.filter((marker) => marker.id !== action.payload),
+      };
+    case ACTION_TYPES.UPDATE_MARKER:
+      return {
+        ...state,
+        markers: state.markers.map((marker) =>
+          marker.id === action.payload.id
+            ? { ...marker, ...action.payload }
+            : marker
+        ),
+      };
+    case ACTION_TYPES.ADD_RADAR_MARKER:
+      return {
+        ...state,
+        radarMarkers: [...state.radarMarkers, action.payload],
+      };
+    case ACTION_TYPES.REMOVE_RADAR_MARKER:
+      return {
+        ...state,
+        radarMarkers: state.radarMarkers.filter(
+          (marker) => marker.id !== action.payload
+        ),
+      };
+    case ACTION_TYPES.UPDATE_RADAR_MARKER:
+      return {
+        ...state,
+        radarMarkers: state.radarMarkers.map((marker) =>
+          marker.id === action.payload.id
+            ? { ...marker, ...action.payload }
+            : marker
+        ),
       };
     case ACTION_TYPES.SET_MODE:
       return {
         ...state,
-        mode: isValidMode(MODE_TYPES, action.payload)
-          ? action.payload
-          : state.mode,
+        mode: MODE[action.payload],
       };
     default:
       return state;

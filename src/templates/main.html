@@ -10,27 +10,22 @@
   </head>
 
   <body>
-    <div class="header">
-      <div class="header__inner">
-        <nav class="navigation">
-          <ul id="tabs-nav" class="tabs-nav"></ul>
-        </nav>
-        <select id="mode-select-js"></select>
+    <div class="content">
+      <div class="content__search-wrapper">
         <div id="search-group-js" class="search-group">
           <input
             id="search-js"
             type="text"
-            placeholder="London..."
+            placeholder="Search Capital Cities..."
             autocomplete="false"
           />
           <div id="search-list-js" class="search-list"></div>
         </div>
-        <button type="button" id="searchBtn" class="btn">Search</button>
       </div>
+      <div class="content-left">
+        <div id="map-container" class="map-container"></div>
+      </div>
+      <div id="map-panel" class="content-right"></div>
     </div>
-    <div class="container">
-      <div id="tabs-content" class="tabs-content"></div>
-    </div>
-    <div id="map-container" class="map-container"></div>
   </body>
 </html>

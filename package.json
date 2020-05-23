@@ -1,6 +1,6 @@
 {
   "name": "interactive-map-js",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Interactive map written in vanilla js",
   "license": "ISC",
   "author": "Mateusz Wende",
@@ -12,10 +12,11 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@turf/length": "^6.0.2",
+    "@turf/turf": "^5.1.6",
     "@types/mapbox-gl": "^1.10.1",
     "gh-pages": "^2.2.0",
-    "mapbox-gl": "^1.10.1"
+    "mapbox-gl": "^1.10.1",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

@@ -1,0 +1,162 @@
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+
+  &-left {
+    flex: auto;
+    height: 100%;
+  }
+
+  &-right {
+    flex: 1 0 25%;
+    max-width: 320px;
+    background-color: hsl(0, 0%, 94%);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 0 10px 0;
+    }
+
+    &__name {
+      font-size: 14px;
+      margin: 10px 0 5px 0;
+      font-weight: bold;
+    }
+
+    &__descr {
+      font-size: 14px;
+      margin: 0 0 10px 0;
+    }
+
+    &__tags {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-bottom: 8px;
+
+      .mode-btn {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+        background: lightgrey;
+        border-radius: 7px;
+
+        border: none;
+        outline: none;
+        transition: all 0.1s ease-in;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+          background: $main-color;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 9px;
+          left: 9px;
+          width: 22px;
+          height: 22px;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+
+      .marker-icon:after {
+        background-image: url("../../images/marker.svg");
+      }
+
+      .measure-point-icon:after {
+        top: 14px;
+        left: 14px;
+        width: 12px;
+        height: 12px;
+        background-image: url("../../images/measure-point.svg");
+      }
+    }
+
+    &__data {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      .data-view {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        &__distance {
+          margin: 0 0 10px 0;
+        }
+
+        &__row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 2px 0;
+
+          p.data-name {
+            margin: 0 8px;
+          }
+
+          p.capital {
+            margin: 0 8px;
+            font-weight: bold;
+          }
+
+          .btn-remove {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            margin: 0 4px 3px;
+            cursor: pointer;
+            border-radius: 7px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            transition: all 0.1s ease-in;
+
+            &:hover,
+            &:active,
+            &:focus {
+              background-color: lightgrey;
+            }
+
+            &:after {
+              content: "";
+              position: absolute;
+              top: 3px;
+              left: 3px;
+              width: 22px;
+              height: 24px;
+              background-image: url("../../images/bin.png");
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: contain;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__search-wrapper {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 999;
+  }
+}

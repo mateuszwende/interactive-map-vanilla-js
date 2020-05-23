@@ -17,7 +17,7 @@ export const MODE = {
     KEY: "RADAR_MARKER",
     NAME: "Radar Marker",
     DESCRIPTION:
-      "Add draggable radar markers by clicking on any place on the map. They will detect the closest capital city.",
+      "Add draggable radar markers by clicking on any place on the map. They will detect the nearest capital city and show its distance from the marker.",
     ICON_CSS_CLASS: "radar-marker-icon",
   },
 };

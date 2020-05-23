@@ -40,13 +40,17 @@ const createClosestCapitalTextElement = (marker) => {
     ])
   );
 
+  const distanceToPoint = nearestPoint.properties.distanceToPoint.toFixed(2);
   const nearestCapital = countryCapitals.find(
     (capital) =>
       capital.coordinates.lat === nearestPoint.geometry.coordinates[0] &&
       capital.coordinates.lng === nearestPoint.geometry.coordinates[1]
   );
 
-  const textElem = createParagraphElem("capital", nearestCapital.name);
+  const textElem = createParagraphElem(
+    "capital",
+    `${nearestCapital.name} (${distanceToPoint} km)`
+  );
   return textElem;
 };
 

@@ -30,7 +30,7 @@ import map from "./";
 // ------------------------------------
 
 export const handleOnMapLoad = () => {
-  map.on("load", () => {
+  map.on("load", (e) => {
     addSource("geojson-measure-lines", {
       type: "geojson",
       data: createGeojsonDataObj("FeatureCollection"),
@@ -53,6 +53,8 @@ export const handleOnMapLoad = () => {
 
     addMapOnClickEventListener();
     addMapOnMousemoveEventListener();
+
+    map.resize(e);
   });
 };
 
